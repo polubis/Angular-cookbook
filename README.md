@@ -74,8 +74,7 @@ export class MinValidatorDirective implements Validator {
 
 ```ts
   constructor(
-        public matDialog: MatDialog,
-        public matDialogRef: MatDialogRef<ConfirmationDialogComponent>
+        public matDialog: MatDialog
     ) {}
 
 const dialogMessage =
@@ -85,7 +84,7 @@ const dialogMessage =
 	      )
 	    : 'Update the Top-down forecast?';
 
-    this.matDialog.open(ConfirmationDialogComponent, {
+    const dialogRef = this.matDialog.open(ConfirmationDialogComponent, {
 	data: {
 	    title: 'Are you sure?',
 	    content: dialogMessage,
@@ -94,7 +93,7 @@ const dialogMessage =
 	},
     });
 
-    this.matDialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result) => {
 	console.log(result);
 	if (result) {
 	    this._saveIndicationData();
