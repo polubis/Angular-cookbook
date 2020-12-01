@@ -73,9 +73,35 @@ export class MinValidatorDirective implements Validator {
 ### Creating Confirm Dialog
 
 ```ts
-this.matDialog.open(ConfirmationDialogComponent, {
-     data: {},
-});
+  constructor(
+        public matDialog: MatDialog,
+        public matDialogRef: MatDialogRef<ConfirmationDialogComponent>
+    ) {}
+
+const dialogMessage =
+	res.affectedAdaptations.length > 0
+	    ? this._generateMessageBasedOnAffectedAdaptations(
+		  res.affectedAdaptations
+	      )
+	    : 'Update the Top-down forecast?';
+
+    this.matDialog.open(ConfirmationDialogComponent, {
+	data: {
+	    title: 'Are you sure?',
+	    content: dialogMessage,
+	    ok: 'Yes',
+	    cancel: 'No',
+	},
+    });
+
+    this.matDialogRef.afterClosed().subscribe((result) => {
+	console.log(result);
+	if (result) {
+	    this._saveIndicationData();
+	}
+
+	this.workInProgress = false;
+    });
 ```
 ```ts
 import { Component, Inject } from '@angular/core';
