@@ -66,3 +66,37 @@ export class MinValidatorDirective implements Validator {
     }
 }
 ```
+
+
+## Material UI utils
+
+### Creating Confirm Dialog
+
+```ts
+this.matDialog.open(ConfirmationDialogComponent, {
+     data: {},
+});
+```
+```ts
+import { Component, Inject } from '@angular/core';
+import { downgradeComponent } from '@angular/upgrade/static';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+@Component({
+    selector: 'app-confirmation-dialog',
+    template: `
+        <h2 mat-dialog-title>{{ data.title }}</h2>
+        <mat-dialog-content class="mat-typography">
+            {{ data.content }}
+            Update the Top-down forecast
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>{{ data.cancel }}</button>
+            <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{ data.confirm }}</button>
+        </mat-dialog-actions>
+    `,
+})
+export class ConfirmationDialogComponent {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+}
+```
