@@ -3,12 +3,24 @@
 ## Reactive forms
 
 ```ts
+// creation
 form = new FormGroup({
 	name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.minLength(100)]),
 });
 
 // form [formGroup]="form"
 // formControlName="name"
+
+// listening
+
+this.form
+    .get('drug')
+    .valueChanges
+    .subscribe()
+    
+// update
+
+this.form.get('drug').setValue(this.data.drugs[0]);
 ```
 
 ## Template driven forms
