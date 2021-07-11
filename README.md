@@ -145,6 +145,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     `,
 })
 export class ConfirmationDialogComponent {
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any, public matDialog: MatDialog, public mdr: MatDialogRef<ConfirmationDialogComponent>) {}
+    
+<!--                         this._matDialog.closeAll(); -->
+<!-- this.mdr.close() -->
 }
 ```
