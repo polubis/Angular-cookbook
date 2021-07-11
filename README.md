@@ -1,5 +1,16 @@
 # Angular-cookbook
 
+## Reactive forms
+
+```ts
+form = new FormGroup({
+	name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.minLength(100)]),
+});
+
+// form [formGroup]="form"
+// formControlName="name"
+```
+
 ## Template driven forms
 
 - **FormsModule**
